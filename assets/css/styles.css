@@ -1,0 +1,17 @@
+body {
+	background-color: #595959;
+	background-image: url("../images/AstrologyHeader.jpg");
+}
+
+
+h1 {
+	text-align: center;
+	font-size: 100px;
+	color: white;
+}
+
+div {
+	font-size: 50px;
+	padding: 20px;
+	color: white;
+}
