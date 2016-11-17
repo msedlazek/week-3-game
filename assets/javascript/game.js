@@ -8,24 +8,59 @@
 // *Going to attempt to not use any functions for this*
 
 
-
+// All variables that are established at the beginning.
 var letters = ['a','b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o ', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var wins = 0;
 var losses = 0;
 var guesses = [];
+var guessesLeft = 10;
 var winLetter = letters[Math.floor(Math.random() * 
-		26)];
-console.log(winLetter)
+		letters.length)];
 
-// document.onkeyup = function(event) {
-// 	var key = event.key;
-// 	console.log(key);
+// This will take in user data and the compare it to computer data.
+document.onkeyup = function(event) {
+	var key = event.key;
+	console.log(key);
 
+	// If the user guesses correct, wins increases by 1, guessesLeft
+	// is reset to 10, and the guesses array is cleared, and a new
+	// letter is set for the computer.
 
-// }
+		if (key == winLetter){
+			wins++;
+			guessesLeft = 10;
+			guesses = [];
+			console.log("You Win!")
+			winLetter = letters[Math.floor(Math.random() * 
+		letters.length)];
+		// If the user doesn't choose correctly, the key pressed is 
+		// pushed into the guesses array, guessesLeft decreases by 1
+		// and the computer selects a new letter at random.
 
-// var wins = 0
+		}else{
+			guesses.push(key);
+			guessesLeft--;
+			console.log("You Lose!")
+			winLetter = letters[Math.floor(Math.random() * 
+		letters.length)];
 
-// for (var i = 0; i < 10; i++) {
+		// The ending lose considtion is set to when the user runs 
+		// out of guesses. Then the losses increases by 1, the guesses
+		// array is cleared, and guessesLeft is reset to 10.
+		} if (guessesLeft == 0) {
+			losses++;
+			guesses = [];
+			guessesLeft = 10;
+		}
+   			
 
-// }
+var html = "<p>Guess what letter I'm thinking of!</p>" +
+"<p>Wins: " + wins + "</p>" +
+"<p>Losses: " + losses + "</p>" + 
+"<p>Guesses Left: " + guessesLeft + "</p>" +
+"<p>Guesses so far: " + guesses + "</p>";
+
+document.querySelector(".displayResults").innerHTML = html
+
+}
+
